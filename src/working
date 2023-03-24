@@ -1,0 +1,129 @@
+// TradingViewWidget.jsx
+
+import React, { useState, useEffect, useRef } from 'react';
+import './TradingViewWidget.css';
+import Cookies from 'js-cookie';
+
+let tvScriptLoadingPromise;
+
+const availableCryptos = ['BTCUSDT', 'ETHUSDT', 'LTCUSDT'];
+const availableIndicators = ['Bollinger Bands', 'VWAP', 'RSI', 'MACD'];
+
+const indicatorMapping = {
+  'Bollinger Bands': 'STD@tv-basicstudies',
+  'VWAP': 'STD;VWAP',
+  'RSI': 'STD;RSI',
+  'MACD': 'STD;MACD',
+};
+
+function CryptoChart({ symbol, indicators }) {
+  const onLoadScriptRef = useRef();
+  const containerIdRef = useRef(`tradingview_${symbol}`);
+
+  useEffect(() => {
+    onLoadScriptRef.current = createWidget;
+
+    if (!tvScriptLoadingPromise) {
+      tvScriptLoadingPromise = new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.id = 'tradingview-widget-loading-script';
+        script.src = 'https://s3.tradingview.com/tv.js';
+        script.type = 'text/javascript';
+        script.onload = resolve;
+
+        document.head.appendChild(script);
+      });
+    }
+
+    tvScriptLoadingPromise.then(() => onLoadScriptRef.current && onLoadScriptRef.current());
+
+    return () => onLoadScriptRef.current = null;
+
+    function createWidget() {
+      if (document.getElementById(containerIdRef.current) && 'TradingView' in window) {
+        new window.TradingView.widget({
+          autosize: true,
+          symbol: `BINANCE:${symbol}`,
+          interval: "5",
+          timezone: "Etc/UTC",
+          theme: "dark",
+          style: "1",
+          locale: "en",
+          toolbar_bg: "#f1f3f6",
+          enable_publishing: false,
+          allow_symbol_change: true,
+          save_image: false,
+          studies: indicators.map((indicator) => indicatorMapping[indicator]),
+          container_id: containerIdRef.current,
+        });
+      }
+    }
+  }, [symbol, indicators]);
+
+  return (
+    <div className='tradingview-widget-container'>
+      <div id={containerIdRef.current} />
+    </div>
+  );
+}
+
+export default function TradingViewWidget() {
+  const [selectedCryptos, setSelectedCryptos] = useState([]);
+  const [selectedIndicators, setSelectedIndicators] = useState([]);
+
+  const handleCryptoChange = (index, event) => {
+    const newSelectedCryptos = [...selectedCryptos];
+    newSelectedCryptos[index] = event.target.value;
+    setSelectedCryptos(newSelectedCryptos);
+  };
+
+  const handleIndicatorChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedIndicators((prev) => [...prev, value]);
+    } else {
+      setSelectedIndicators((prev) => prev.filter((indicator) => indicator !== value));
+    }
+  };
+
+  return (
+    <div>
+      <form>
+        <div>
+          <label>Select Cryptocurrencies:</label>
+          {Array.from({ length: 3 }, (_, i) => i).map((_, index) => (
+            <select key={index} onChange={(event) => handleCryptoChange(index, event)}>
+              <option value="">Select...</option>
+              {availableCryptos.map((crypto) => (
+                <option key={crypto} value={crypto}>
+                  {crypto}
+                </option>
+              ))}
+            </select>
+          ))}
+        </div>
+        <div>
+        <label>Select Indicators (max 3):</label>
+          {availableIndicators.map((indicator) => (
+            <div key={indicator}>
+              <input
+                type="checkbox"
+                id={indicator}
+                value={indicator}
+                disabled={selectedIndicators.length >= 3 && !selectedIndicators.includes(indicator)}
+                onChange={handleIndicatorChange}
+              />
+              <label htmlFor={indicator}>{indicator}</label>
+            </div>
+          ))}
+        </div>
+      </form>
+      <div className='tradingview-widgets-grid'>
+        {selectedCryptos.filter((crypto) => crypto !== '').map((crypto) => (
+          <CryptoChart key={crypto} symbol={crypto} indicators={selectedIndicators} />
+        ))}
+      </div>
+    </div>
+  );
+}
+

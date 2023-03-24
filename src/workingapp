@@ -1,0 +1,56 @@
+import React from "react";
+import "./App.css";
+import TradingViewWidget from "./TradingViewWidget";
+
+function App() {
+  return (
+    <div className="App">
+      <TradingViewWidget />
+      <div>
+      <div class="title">
+        <h2>Indicator Explanations</h2>
+      </div>
+      <div class="explanation">
+      
+        <div class="indicator">
+          
+          <h3>Stochastic RSI</h3>
+          <p>
+            The Stochastic RSI (StochRSI) is an indicator that measures the
+            strength of price movements relative to recent highs and lows. A
+            high value indicates overbought conditions, while a low value
+            indicates oversold conditions. A buy signal is generated when the
+            StochRSI crosses above 20, and a sell signal is generated when it
+            crosses below 80.
+          </p>
+        </div>
+        <div class="indicator">
+          <h3>MACD</h3>
+          <p>
+            The Moving Average Convergence Divergence (MACD) is a
+            trend-following momentum indicator that shows the relationship
+            between two moving averages of a security's price. The MACD is
+            calculated by subtracting the 26-day Exponential Moving Average
+            (EMA) from the 12-day EMA. A buy signal is generated when the MACD
+            line crosses above the signal line, and a sell signal is generated
+            when the MACD line crosses below the signal line.
+          </p>
+        </div>
+        <div class="indicator">
+          <h3>MA Cross</h3>
+          <p>
+            The Moving Average (MA) Cross is a simple technical indicator that
+            uses two moving averages to generate buy and sell signals. When the
+            short-term moving average crosses above the long-term moving
+            average, it indicates a buy signal. Conversely, when the short-term
+            moving average crosses below the long-term moving average, it
+            indicates a sell signal.
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+  );
+}
+
+export default App;

@@ -1,0 +1,67 @@
+html{
+  background-color: rgb(35, 35, 35);
+  color:aliceblue
+}
+body {
+  font-family: Arial, sans-serif;
+}
+.App{
+  padding-top:-20px;
+  background-color: rgb(35, 35, 35) ;
+  color:aliceblue
+}
+
+
+.tradingview-widget {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tradingview-widgets-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tradingview-widget-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  padding:20px;
+}
+
+.crypto-selector,
+.indicator-selector {
+  margin-bottom: 20px;
+}
+
+.cryptoList,
+.indicator-option {
+  display: flex;
+  align-items: center;
+}
+
+.cryptoList input,
+.indicator-option input {
+  margin-right: 5px;
+}
+
+.indicator-selector {
+  margin-bottom: 20px;
+}
+
+.explanation {
+  margin-top: 20px;
+}
+
+.explanation__section {
+  margin-bottom: 20px;
+  width:20%;
+  display:inline-flex;
+  flex-direction:column;
+  padding:10px;
+}
+
+.explanation__section h2 {
+  margin-bottom: 10px;
+}
