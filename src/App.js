@@ -46,18 +46,13 @@ function App() {
           movements. The RSI is displayed as an oscillator (a line graph that moves between two extremes) and can have a
           reading from 0 to 100. The RSI is considered overbought when above 70 and oversold when below 30.
         </p>
-
         <p>
-          Traders may buy the security when the RSI crosses above 30 and sell—or short—the security when the RSI crosses
-          below 70.
+          Try to open a long position when the RSI is oversold and the price is rising. This happens when the RSI is below a level of 30.
+          Try to open a short position when the RSI is overbought and the price is falling. This happens when the RSI is above a level of 70.
         </p>
-
         <p>
           The RSI can also be used to identify the general trend. If the RSI is trending higher, prices are generally
-
           increasing. If the RSI is trending lower, prices are generally decreasing.
-
-
         </p>
         </div>
         <div className='explanation__section'>

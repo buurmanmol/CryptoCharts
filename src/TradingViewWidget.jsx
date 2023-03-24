@@ -118,23 +118,46 @@ export default function TradingViewWidget() {
   };
 
   const cryptoOptions = [
-    { value: "BTCUSDT", label: "Bitcoin (BTC)" },
-    { value: "ETHUSDT", label: "Ethereum (ETH)" },
+    { value: "AAVEUSDT", label: "Aave (AAVE)" },
+    { value: "ARBUSDT", label: "Arbitrum (ARB)" },
     { value: "BNBUSDT", label: "Binance Coin (BNB)" },
+    { value: "BTCUSDT", label: "Bitcoin (BTC)" },
+    { value: "BCHUSDT", label: "Bitcoin Cash (BCH)" },
     { value: "ADAUSDT", label: "Cardano (ADA)" },
-    { value: "XRPUSDT", label: "XRP (XRP)" },
-    { value: "DOGEUSDT", label: "Dogecoin (DOGE)" },
-    { value: "SOLUSDT", label: "Solana (SOL)" },
-    { value: "DOTUSDT", label: "Polkadot (DOT)" },
-    { value: "LUNAUSDT", label: "Luna (LUNA)" },
     { value: "LINKUSDT", label: "Chainlink (LINK)" },
+    { value: "ATOMUSDT", label: "Cosmos (ATOM)" },
+    { value: "DOGEUSDT", label: "Dogecoin (DOGE)" },
+    { value: "EOSUSDT", label: "EOS (EOS)" },
+    { value: "ETHUSDT", label: "Ethereum (ETH)" },
+    { value: "ETCUSDT", label: "Ethereum Classic (ETC)" },
+    { value: "FILUSDT", label: "Filecoin (FIL)" },
+    { value: "ICPUSDT", label: "Internet Computer (ICP)" },
+    { value: "MIOTAUSDT", label: "IOTA (MIOTA)" },
+    { value: "LTCUSDT", label: "Litecoin (LTC)" },
+    { value: "LUNAUSDT", label: "Luna (LUNA)" },
+    { value: "XMRUSDT", label: "Monero (XMR)" },
+    { value: "NEOUSDT", label: "NEO (NEO)" },
+    { value: "DOTUSDT", label: "Polkadot (DOT)" },
+    { value: "SOLUSDT", label: "Solana (SOL)" },
+    { value: "XLMUSDT", label: "Stellar (XLM)" },
+    { value: "THETAUSDT", label: "Theta (THETA)" },
+    { value: "TRXUSDT", label: "TRON (TRX)" },
+    { value: "UNIUSDT", label: "Uniswap (UNI)" },
+    { value: "VETUSDT", label: "VeChain (VET)" },
+    { value: "XRPUSDT", label: "XRP (XRP)" },
+
+    
   ];
 
   const indicatorOptions = [
-    { value: "STD;MACD", label: "MACD" },
-    { value: "STD;VWAP", label: "VWAP" },
-    { value: "STD;RSI", label: "RSI" },
+    
+    
+    
     { value: "STD;BollingerBands", label: "Bollinger Bands" },
+    { value: "STD;MACD", label: "MACD" },
+    { value: "STD;Stochastic", label: "Stochastic" },
+    { value: "STD;RSI", label: "RSI" },
+    { value: "STD;VWAP", label: "VWAP" },
   ];
 
   return (
